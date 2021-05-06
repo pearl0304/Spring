@@ -34,6 +34,17 @@
 									`etc5`=#{etc5};
 	</insert>
 	
+	<insert id="insertTerms">
+		INSERT INTO `km_terms` SET 
+									`terms`=#{terms},
+									`privacy`=#{privacy},
+									`location`=#{location},
+									`finance`=#{finance},
+									`tax`=#{tax};
+	</insert>
+	
+	
+	
 	<select id="selectMember"  resultType="kr.co.kmarket.vo.MemberVo">
 		SELECT * FROM `km_member` WHERE `uid`=#{uid} AND `pass`=PASSWORD(#{pass});
 	</select>

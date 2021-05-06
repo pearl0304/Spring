@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.kmarket.dao.MemberDao;
 import kr.co.kmarket.vo.MemberVo;
+import kr.co.kmarket.vo.TermsVo;
 
 @Service
 public class MemberService {
@@ -20,5 +21,8 @@ public class MemberService {
 		dao.insertMember(vo);
 	}
 	
+	public void insertTerms(TermsVo vo) {
+		dao.insertTerms(vo);
+	}
 
 }
