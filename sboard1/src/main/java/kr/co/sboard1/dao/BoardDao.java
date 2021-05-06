@@ -16,8 +16,9 @@ public class BoardDao {
 	private SqlSessionTemplate mybatis;
 	
 	public int insertArticle(ArticleVo vo) {
-		// ±ÛÀ» insert ¼öÇà ÈÄ ÇØ´ç Å×ÀÌºí ÇàÀÇ seq°ªÀ» vo°´Ã¼ seq¸â¹ö¿¡ ÀúÀå
-		// Áï, ¹æ±İ insertÇÑ ±Û ¹øÈ£¸¦ ¸®ÅÏ
+		// ê¸€ì„ insert ìˆ˜í–‰ í›„ í•´ë‹¹ í…Œì´ë¸” í–‰ì˜ seqê°’ì„ vo ê°ì²´ seq ë©¤ë²„ì— ì €ì¥ 
+		// ë°©ê¸ˆ insertí•œ ê¸€ ë²ˆí˜¸ ë¦¬í„´
+		
 		mybatis.insert("mapper.board.INSERT_ARTICLE", vo);
 		return vo.getSeq();
 	}
@@ -37,11 +38,7 @@ public class BoardDao {
 	public List<ArticleVo> selectArticles(int start) {
 		return mybatis.selectList("mapper.board.SELECT_ARTICLES", start);
 	}
-	
-	
-	
-	
-	
+
 	public void updateArticle() {}
 	public void deleteArticle() {}
 }

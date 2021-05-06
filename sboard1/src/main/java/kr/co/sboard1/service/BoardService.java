@@ -42,12 +42,12 @@ public class BoardService {
 	public void updateArticle() {}
 	public void deleteArticle() {}
 	
-	// °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö ¹øÈ£ Ã³¸®°ü·Ã ¸Ş¼­µå
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ ë²ˆí˜¸ ì²˜ë¦¬ ê´€ë ¨ ë©”ì„œë“œ
 	public int getPageStartNum(int total, int start) {
 		return total - start;
 	}
 	
-	// °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö Ã³¸®°ü·Ã ¸Ş¼­µå
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ ì²˜ë¦¬ê´€ë ¨ ë©”ì„œë“œ
 	public int[] getPageGroup(int currentPage, int lastPageNum) {
 		
 		int groupCurrent = (int) Math.ceil(currentPage / 10.0);
@@ -62,7 +62,7 @@ public class BoardService {
 		
 		return groups;
 	}
-	// °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö Ã³¸®°ü·Ã ¸Ş¼­µå
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ ì²˜ë¦¬ ê´€ë ¨ ë©”ì„œë“œ
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
 		
@@ -71,11 +71,11 @@ public class BoardService {
 		}
 		return currentPage;
 	}
-	// °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö Ã³¸®°ü·Ã ¸Ş¼­µå
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ ì²˜ë¦¬ ê´€ë ¨ ë©”ì„œë“œ
 	public int getLimitStart(int currentPage) {
 		return (currentPage - 1) * 10;
 	}
-	// °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö Ã³¸®°ü·Ã ¸Ş¼­µå
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ ì²˜ë¦¬ ê´€ë ¨ ë©”ì„œë“œ
 	public int getLastPageNum(int total) {
 		
 		int lastPageNum = 0;
@@ -89,21 +89,21 @@ public class BoardService {
 		return lastPageNum;
 	}
 	
-	// ÆÄÀÏ ¾÷·Îµå
+	// íŒŒì¼ ì—…ë¡œë“œ
 	public FileVo fileUpload(HttpServletRequest req, MultipartFile file, int seq) {
 		
-		// spring-context.xml - '/resources/file/' °æ·Î ¼³Á¤µî·Ï
+		// spring-context.xml - '/resources/file/' ê²½ë¡œ ì„¤ì •ë“±ë¡
 		String path = req.getSession().getServletContext().getRealPath("/resources/file/");
 		
 		if(!file.isEmpty()) {
-			// ÆÄÀÏ Ã·ºÎ ÇßÀ»¶§
+			// íŒŒì¼ ì²¨ë¶€ í–ˆì„ë•Œ
 			String oName = file.getOriginalFilename();
 			String ext = oName.substring(oName.lastIndexOf("."));
 			
-			// °íÀ¯ÆÄÀÏ¸í »ı¼º
+			// ê³ ìœ íŒŒì¼ëª… ìƒì„±
 			String uName = UUID.randomUUID().toString()+ext;
 			
-			// ÆÄÀÏ ÀúÀå
+			// íŒŒì¼ ì €ì¥
 			try {
 				file.transferTo(new File(path+uName));
 			}catch(Exception e) {
@@ -118,13 +118,12 @@ public class BoardService {
 			return vo;
 			
 		}else {
-			// ÆÄÀÏ Ã·ºÎ ¾ÈÇßÀ»¶§
+			// íŒŒì¼ ì²¨ë¶€ ì•ˆí–ˆì„ë•Œ
 			return null;
 		}	
 	}
 	
-	
-	// ÆÄÀÏ ´Ù¿î·Îµå
+	// íŒŒì¼ ë‹¤ìš´ë¡œë“œ
 	public void fileDownload() {
 		
 	}

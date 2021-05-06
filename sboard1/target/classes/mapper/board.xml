@@ -11,6 +11,15 @@
 			`regip`=#{regip},
 			`rdate`=NOW();			
 	</insert>
+	
+	<insert id="INSERT_FILE">
+		INSERT INTO `JBOARD_FILE` SET
+										`parent`=#{parent},
+										`oldName`=#{oldName},
+										`newName`=#{newName},
+										`rdate`=NOW();
+	</insert>	
+	
 
 	<select id="SELECT_COUNT_ARTICLE" resultType="int">
 		SELECT COUNT(*) FROM `JBOARD_ARTICLE` WHERE `parent`=0 AND `cate`='free';		
