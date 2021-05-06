@@ -29,7 +29,7 @@ $(function(){
 				$.each(result, function(i, data){
 					
 					var article = hitSection.find('article:last-child').clone(); // 전의 섹션에 있던 마지막 태그를 복사
-					article.find('> a').attr('href', '/kmarket/shop/view?code='+data.code); 
+					article.find('> a').attr('href', '/kmarket/shop/view?code='+data.code);  //현재 섹션의 a 태그를 찾아서 view 값을 복사
 					article.find('.thumb > img').attr('src', '/kmarket/thumb/'+data.cate1+'/'+data.cate2+'/'+data.thumb1);
 					article.find('h2').text(data.name);
 					article.find('p').text(data.name);
