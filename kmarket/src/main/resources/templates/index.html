@@ -20,15 +20,16 @@ $(function(){
 		
 		if(top > 200 && !isRecommendOk){
 			isRecommendOk = true;
-			// 추천상품 데이터 요청하기
 			
+			
+			// 추천상품 데이터 요청하기
 			$.get('/kmarket/getRecommendProducts', function(result){			
 				recommendSection.find('img[alt=loading]').remove();					
 				
 				$.each(result, function(i, data){
 					
-					var article = hitSection.find('article:last-child').clone();
-					
+					var article = hitSection.find('article:last-child').clone(); // 전의 섹션에 있던 마지막 태그를 복사
+					article.find('> a').attr('href', '/kmarket/shop/view?code='+data.code); 
 					article.find('.thumb > img').attr('src', '/kmarket/thumb/'+data.cate1+'/'+data.cate2+'/'+data.thumb1);
 					article.find('h2').text(data.name);
 					article.find('p').text(data.name);
@@ -48,6 +49,8 @@ $(function(){
 			});
 		}else if(top > 780 && !isNewOk){			
 			isNewOk = true;
+			
+			
 			// 최신상품 데이터 요청하기
 			$.get('/kmarket/getNewProducts', function(result){
 
@@ -56,7 +59,7 @@ $(function(){
 				$.each(result, function(i, data){
 					
 					var article = hitSection.find('article:last-child').clone();
-					
+					article.find('> a').attr('href', '/kmarket/shop/view?code='+data.code);
 					article.find('.thumb > img').attr('src', '/kmarket/thumb/'+data.cate1+'/'+data.cate2+'/'+data.thumb1);
 					article.find('h2').text(data.name);
 					article.find('p').text(data.name);
@@ -74,8 +77,11 @@ $(function(){
 					newSection.append(article);
 				});
 			});
+			
 		}else if(top > 1530 && !isDiscountOk){			
 			isDiscountOk = true;
+			
+			
 			// 할인상품 데이터 요청하기
 			$.get('/kmarket/getDiscountProducts', function(result){
 
@@ -85,6 +91,7 @@ $(function(){
 					
 					var article = hitSection.find('article:last-child').clone();
 					
+					article.find('> a').attr('href', '/kmarket/shop/view?code='+data.code);
 					article.find('.thumb > img').attr('src', '/kmarket/thumb/'+data.cate1+'/'+data.cate2+'/'+data.thumb1);
 					article.find('h2').text(data.name);
 					article.find('p').text(data.name);
@@ -126,6 +133,7 @@ $(function(){
                  <li><a href="#"><img src="./img/slider_item5.jpg" alt="item5"></a></li>
              </ul>
          </section>
+         
          <!-- 히트상품 영역 -->
          <section class="hit">
              <h3><span>히트상품</span></h3>
@@ -153,7 +161,11 @@ $(function(){
          <!-- 추천상품 영역 -->
          <section class="recommend">
              <h3><span>추천상품</span></h3>
-             <img th:src="@{/img/loading.gif}"alt="loading"> 
+             <img th:src="@{/img/loading.gif}"alt="loading">
+             
+             
+             
+                    
          </section>
          
          <!-- 최신상품 영역 -->
@@ -161,9 +173,7 @@ $(function(){
              <h3><span>최신상품</span></h3>
              <img th:src="@{/img/loading.gif}"alt="loading"> 
          </section>
-         
-         
-         
+     
          <!-- 할인상품 영역 -->
          <section class="discount">
              <h3><span>할인상품</span></h3>  

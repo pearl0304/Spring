@@ -1,5 +1,6 @@
 package kr.co.kmarket.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,6 @@ public class MemberController {
 	}
 	
 	
-	
 	@GetMapping("/member/join")
 	public String join() {		
 		return "/member/join";
@@ -72,7 +72,14 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/register")
-	public String register() {		
+	public String register() {	
+		return "/member/register";
+	}
+	
+	@PostMapping("/member/register")
+	public String register(MemberVo vo) {	
+		service.insertMember(vo);
+		
 		return "/member/register";
 	}
 	
