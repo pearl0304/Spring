@@ -1,6 +1,7 @@
 package kr.co.sboard1.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ public class UserDao {
 	
 	
 	public void insertUser(UserVo vo) {
-		mybatis.insert("mapper.user.INSERT_USER");
+		mybatis.insert("mapper.user.INSERT_USER",vo);
 	}
 	
 	

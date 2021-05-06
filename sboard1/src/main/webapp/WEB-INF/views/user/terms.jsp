@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>약관</title>
-    <link rel="stylesheet" href="/sboard1/css/style.css"/>    
+    <link rel="stylesheet" href="/sboard1/css/style.css"/>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/sboard1/js/terms.js/"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -31,9 +33,9 @@
                     </td>
                 </tr>
             </table>
-            <div>
+            <div class="term_btn">
                 <a href="./login.html">취소</a>
-                <a href="./register.html">다음</a>
+                <a class="next" href="./register.html">다음</a>
             </div>
         </section>
     </div>
