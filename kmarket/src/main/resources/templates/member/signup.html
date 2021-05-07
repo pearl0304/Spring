@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="@{member/_header_member.html}"></th:block>
-        <main>
-            <div id="member-signup">
-				<h1>약관동의</h1>
-				<section>
-					<h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
-					<textarea class="terms" readonly> [[${terms.terms}]]</textarea>
-					<label><input type="checkbox" name="agree1" />동의합니다.</label>
+<script>
+ $(function(){	
+	 var btnnext = $('.agree');	 
+	 btnnext.click(function(){
+			var isOkagree1 = $('input[name=agree1]').is(':checked');
+			var isOkagree2 = $('input[name=agree2]').is(':checked');
+			var isOkagree3 = $('input[name=agree3]').is(':checked');
+			 
+			if(isOkagree1&&isOkagree2&&isOkagree3&&isOkagree4){
+				return true;
+			}else{
+				alert('필수 동의 목록에 모두 체크하셔야 합니다');
+				return false;
+			}
+	 });
+ });
 
-					<h3><span class="essential">(필수)</span>전자금융거래 이용약관</h3>
-					<textarea class="financial" readonly>[[${terms.finance}]] </textarea>
-					<label><input type="checkbox" name="agree2" />동의합니다.</label>
+</script>
+<main>
+   <div id="member-signup">
+	<h1>약관동의</h1>
+	<section>
+		<h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
+		<textarea class="terms" readonly> [[${terms.terms}]]</textarea>
+		<label><input type="checkbox" name="agree1" />동의합니다.</label>
 
-					<h3><span class="essential">(필수)</span>개인정보 수집동의</h3>
-					<textarea class="privacy" readonly>[[${terms.privacy}]]</textarea>
-					<label><input type="checkbox" name="agree3" />동의합니다.</label>
-				</section>
+		<h3><span class="essential">(필수)</span>전자금융거래 이용약관</h3>
+		<textarea class="financial" readonly>[[${terms.finance}]] </textarea>
+		<label><input type="checkbox" name="agree2" />동의합니다.</label>
 
-				<section>
-					<h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
-					<textarea class="location" readonly>[[${terms.location}]]</textarea>
-					<label><input type="checkbox" name="agree4" />동의합니다.</label>
-				</section>
+		<h3><span class="essential">(필수)</span>개인정보 수집동의</h3>
+		<textarea class="privacy" readonly>[[${terms.privacy}]]</textarea>
+		<label><input type="checkbox" name="agree3" />동의합니다.</label>
+	</section>
 
-				<div>
-					<a th:href="@{/member/register}">
-					<input type="button" class="agree" value="동의하기" />
-					</a>
-				</div>
-            </div>
-        </main>        
+	<section>
+		<h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
+		<textarea class="location" readonly>[[${terms.location}]]</textarea>
+		<label><input type="checkbox" name="agree4" />동의합니다.</label>
+	</section>
+
+	<div>
+		<a th:href="@{/member/register}">
+		<input type="button" class="agree" value="동의하기" />
+		</a>
+	</div>
+         </div>
+</main>        
 <th:block th:include="@{member/_footer_member.html}"></th:block>
 </html>
