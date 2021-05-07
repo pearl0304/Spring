@@ -15,14 +15,16 @@ public class MemberService {
 	
 	public MemberVo	selectMember(MemberVo vo) {
 		return dao.selectMember(vo);
-	};
+	}
 	
 	public void insertMember (MemberVo vo) {
 		dao.insertMember(vo);
 	}
 	
-	public void insertTerms(TermsVo vo) {
-		dao.insertTerms(vo);
+	public TermsVo selectTerms(TermsVo vo) {
+		return dao.selectTerms(vo);
+	}
+	
+
 	}
 
-}

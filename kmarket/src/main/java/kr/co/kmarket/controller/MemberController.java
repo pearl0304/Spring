@@ -41,6 +41,7 @@ public class MemberController {
 	
 	@PostMapping("/member/login")
 	public String login(MemberVo vo, HttpSession sess) {	
+
 		
 		String result =vo.getResult();
 		
@@ -62,9 +63,11 @@ public class MemberController {
 	
 	
 	@GetMapping("/member/signup")
-	public String signup(TermsVo vo, Model model) {
-		model.addAttribute("vo", vo);
-		return "/member/signup";
+	public String signup(Model model,TermsVo vo) {
+		
+		TermsVo terms =service.selectTerms(vo);
+		model.addAttribute("terms", terms);
+		 return "/member/signup";
 	}
 	
 	
