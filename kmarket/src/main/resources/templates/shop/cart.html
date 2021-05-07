@@ -87,6 +87,44 @@
 
  			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
  		});	
+ 		
+ 		
+ 		// 체크박스 all 
+ 		$(function() {
+ 			
+			var checkAll = $('input[name=all]');
+			var TagCount = $('.info tr:nth-child(1) > td:nth-child(2)');
+			var TagPrice = $('.info tr:nth-child(2) > td:nth-child(2)');
+			var TagDiscount = $('.info tr:nth-child(3) > td:nth-child(2)');
+			var TagDelivery = $('.info tr:nth-child(4) > td:nth-child(2)');
+			var TagPoint = $('.info tr:nth-child(5) > td:nth-child(2)');
+			var TagTotal = $('.info tr:nth-child(6) > td:nth-child(2)');
+			
+			checkAll.click(function() {
+				var productCheck = $('.product_check')
+				
+				if($(this).is(':checked')==false){
+					 // 체크가 되어 있으면 -> 모든 체크박스 해제 
+					productCheck.attr('checked',false);
+					 
+					 // 집계 초기화
+					TagCount.text('0');
+					TagPrice.text('0');
+					TagCount.text('0');
+					TagDiscount.text('0');
+					TagDelivery.text('0');
+					TagTotal.text('0');
+					 
+				}else{ 
+					//전체 체크하기
+					productCheck.attr('checked',true);
+				}
+			});
+		})
+ 		
+ 		
+ 		
+ 		
  	});
  </script>
 
@@ -106,7 +144,7 @@
                   <table>
                     <thead>
                       <tr>
-                        <th><input type="checkbox" name="all"></th>
+                        <th><input type="checkbox" name="all" checked></th>
                         <th>상품명</th>
                         <th>총수량</th>
                         <th>판매가</th>
@@ -121,7 +159,7 @@
                         <td colspan="7">장바구니에 상품이 없습니다.</td>
                       </tr>
                       <tr th:each="product:${products}">
-                        <td><input type="checkbox" name=""></td>
+                        <td><input type="checkbox" class="product_check" th:name="${product.code}" checked></td>
                         <td>
                           <article>
                             <a href="#">
