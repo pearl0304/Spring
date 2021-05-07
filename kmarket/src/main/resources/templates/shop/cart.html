@@ -13,7 +13,6 @@
  	 		
  	 		var checkedProduct = $('.product_check:checked').parent().parent();
  	 		
- 	 		
 		// 상품수 집계	
  	 		var tagCount = checkedProduct.find('.count');
  	 		var totCoutnt = 0;
@@ -24,9 +23,8 @@
  	 		}); 		
  			$('.info tr:nth-child(1) > td:nth-child(2)').text(totCoutnt);
  			
- 			
+ 
  			//상품 금액
- 			
  	 		var tagPrice = checkedProduct.find('.price');
  	 		var totPrice = 0;
  	 		
@@ -49,10 +47,10 @@
  				if(discount != '-'){
  					var price = $(this).prev().text().replace(/,/g, '');
  					totDiscount += parseInt(price * discount / 100);
- 				}			
- 				
- 				$('.info tr:nth-child(3) > td:nth-child(2)').text(totDiscount.toLocaleString());
+ 				}				
  			}); 
+ 			
+ 			$('.info tr:nth-child(3) > td:nth-child(2)').text(totDiscount.toLocaleString());
  	 		
  	 		
  			// 배송비 집계
@@ -66,8 +64,9 @@
  	 			if(delivery != '무료배송'){
  	 				totDelivery += parseInt(delivery);
  	 			}
- 	 			$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
  	 		}); 
+ 	 		$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
+ 	 		
  	 		
  	 		// 포인트 집계
  	 		var tagPoint = checkedProduct.find('.point');
@@ -77,23 +76,20 @@
  	 		$.each(tagPoint, function(){
  	 			var point = ($(this).text().replace(/,/g,''));
  	 			totPoint += parseInt(point);
-
- 	 			$('.info tr:nth-child(5) > td:nth-child(2)').text(totPoint.toLocaleString());
  	 		}); 
+	 			$('.info tr:nth-child(5) > td:nth-child(2)').text(totPoint.toLocaleString());
  	 		
  	 		
  	 		// 전체 주문 금액 (소계) 집계
  	 		
  	 		var tagTotal = checkedProduct.find('.total');
  	 		var totTotal = 0;
-
  	 		
  	 		$.each(tagTotal, function(){
  	 			var total = ($(this).text().replace(/,/g,''));
  	 			totTotal += parseInt(total);
-
- 	 			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
  	 		});	
+	 			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
 	});
  }
  		
@@ -103,12 +99,7 @@
  			
 			var checkAll = $('input[name=all]');
 			var checkProducts = $('input.product_check');
-			var TagCount = $('.info tr:nth-child(1) > td:nth-child(2)');
-			var TagPrice = $('.info tr:nth-child(2) > td:nth-child(2)');
-			var TagDiscount = $('.info tr:nth-child(3) > td:nth-child(2)');
-			var TagDelivery = $('.info tr:nth-child(4) > td:nth-child(2)');
-			var TagPoint = $('.info tr:nth-child(5) > td:nth-child(2)');
-			var TagTotal = $('.info tr:nth-child(6) > td:nth-child(2)');
+
 			
 			checkAll.click(function() {
 				var productCheck = $('.product_check')
@@ -118,13 +109,7 @@
 					productCheck.prop('checked',false);
 					 
 					 // 집계 초기화
-					TagCount.text('0');
-					TagPrice.text('0');
-					TagCount.text('0');
-					TagDiscount.text('0');
-					TagDelivery.text('0');
-					TagPoint.text('0');
-					TagTotal.text('0');
+					aggregateProduct();
 					 
 				}else{ 
 					// 전체 체크하기
