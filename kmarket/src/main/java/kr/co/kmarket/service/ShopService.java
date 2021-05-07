@@ -29,17 +29,20 @@ public class ShopService {
 	
 	public int selectCountCart(CartVo vo) {
 		return dao.selectCountCart(vo);
-	};
+	}
 	
 	
 	public int insertCart(CartVo vo) {
 		return dao.insertCart(vo);
-	};
+	}
 	
 
 	public List<CartVo> selelctCart(String uid) {
 		return dao.selectCart(uid);
-	};
+	}
 	
+	public int deleteCart(int[] cartSeqs) {
+		return dao.deleteCart(cartSeqs);
+	}
 
 }

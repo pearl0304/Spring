@@ -120,5 +120,17 @@ public class ShopController {
 	}
 	
 	
+	@ResponseBody
+	@GetMapping("/shop/cartRemove")
+	public String cartRemove(int[] cartSeqs) {
+		
+		int result = service.deleteCart(cartSeqs);
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		return new Gson().toJson(json);
+	}
+	
+	
 	
 }
