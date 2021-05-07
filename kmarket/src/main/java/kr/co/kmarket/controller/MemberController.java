@@ -68,20 +68,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/member/join")
 	public String join() {
 		return "/member/join";

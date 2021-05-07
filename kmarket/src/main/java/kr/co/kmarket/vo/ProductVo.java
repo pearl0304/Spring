@@ -2,6 +2,7 @@ package kr.co.kmarket.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
 import lombok.Getter;
 import lombok.Setter;
 

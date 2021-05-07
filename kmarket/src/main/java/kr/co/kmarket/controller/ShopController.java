@@ -2,6 +2,7 @@ package kr.co.kmarket.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,11 +72,7 @@ public class ShopController {
 		}
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	@ResponseBody
 	@PostMapping("/shop/cart")
@@ -109,6 +106,19 @@ public class ShopController {
 	}
 	
 	
+	@ResponseBody
+	@GetMapping("/shop/cartRemove")
+	public String cartRemove(int[] cartSeqs) {
+		int result = service.deleteCart(cartSeqs);
+		
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		return new Gson().toJson(json);
+	}
+	
+	
+	
 	@GetMapping("/shop/order")
 	public String order() {		
 		return "/shop/order";
@@ -120,17 +130,7 @@ public class ShopController {
 	}
 	
 	
-	@ResponseBody
-	@GetMapping("/shop/cartRemove")
-	public String cartRemove(int[] cartSeqs) {
-		
-		int result = service.deleteCart(cartSeqs);
-		JsonObject json = new JsonObject();
-		json.addProperty("result", result);
-		
-		return new Gson().toJson(json);
-	}
-	
+
 	
 	
 }
