@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import kr.co.kmarket.vo.CartVo;
+import kr.co.kmarket.vo.OrderDetailVo;
 import kr.co.kmarket.vo.OrderVo;
 import kr.co.kmarket.vo.ProductVo;
 
@@ -19,7 +20,9 @@ public interface ShopDao {
 	public int insertCart(CartVo vo);
 	public int deleteCart(int[] cartSeqs);
 	
-	public int insertOrder(int[] cartSeqs);
+	public int insertOrder(OrderVo vo);
+	public int insertOrderDetail(int orderId, int code);
+	
 	public List<OrderVo> selectOrder(String uid);
 	
 	
