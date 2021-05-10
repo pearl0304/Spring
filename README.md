@@ -22,7 +22,7 @@
 > Spring Boot을 활용하여 CRUD 구현 
 
 ## sboard1
-> Spring을 활용하여 게시판 만들기
+> Spring을 활용하여 게시판 만들기 http://3.36.97.36:8081/sboard1/
 
 ## sboard2
 > Spring Boot을 활용하여 게시판 만들기
