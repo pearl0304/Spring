@@ -29,4 +29,5 @@
 
 ## kmarket
 > Spring Boot을 활용하여 쇼핑몰 웹페이지 만들기
+> http://3.36.97.36:8081/kmarket/
 
