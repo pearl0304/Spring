@@ -148,7 +148,7 @@
 					$.ajax({
 						url:'/kmarket/shop/cartRemove',
 						type:'get',
-						traditional : true,
+						traditional : true, // 배열이기 때문에 
 						data : params,
 						dataType : 'json',
 						success : function(data){	
@@ -168,14 +168,37 @@
 					});
 				});
 				
-			});
+			}); // <!--삭제하기 버튼-->
  		
  		
  		
  		// 주문하기 버튼 
  		$(function(){
  			$('input[name=order]').click(function(){
- 				alert('aa');
+ 				
+ 				var checkedProducts = $('.product_check:checked');
+				var cartSeqs=[];
+				
+				checkedProducts.each(function(i,product){
+					cartSeqs.push(product.value);
+				});
+				
+				var params = {"cartSeqs":cartSeqs};
+				
+				$.ajax({
+					url:'/kmarket/shop/order',
+					type:'post',
+					traditional : true,
+					data : params,
+					dataType : 'json',
+					success : function(data){
+						location.href="/kmarket/shop/order";
+					}
+					
+				});
+ 				
+ 				
+ 				
  			});
  		});
 
