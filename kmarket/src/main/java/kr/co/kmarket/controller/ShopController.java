@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,10 +123,16 @@ public class ShopController {
 	
 	
 	@GetMapping("/shop/order")
-	public String order(HttpSession sess, Model model) {	
+	public String order(HttpSession sess, Model model, int orderId) {	
 		
 		MemberVo member=(MemberVo)sess.getAttribute("smember");	
+		String uid = member.getUid();
+		
+		List<OrderVo> products = service.selectOrder(uid, orderId);
+		
 		model.addAttribute("member",member);
+		model.addAttribute("products",products);
+		model.addAttribute("infoData",products.get(0));
 		
 		return "/shop/order";
 	}
@@ -134,16 +141,20 @@ public class ShopController {
 	@ResponseBody
 	@PostMapping("/shop/order")
 	public String order(OrderVo vo) {
-
-		int orderId = service.insertOrder(vo);
-
+		service.insertOrder(vo);
+		
+		// 방금 INSERT 한 orderId 값 구하기
+		int orderId = vo.getOrderId();
+		
+		System.out.println("orderId :" +orderId);
+		
 		for(int code : vo.getCodes()) {
 			service.insertOrderDetail(orderId, code);
 			
 		}
 
 		JsonObject json = new JsonObject();
-		json.addProperty("result", orderId);
+		json.addProperty("orderId", orderId);
 		
 		return new Gson().toJson(json);
 	}
@@ -154,8 +165,8 @@ public class ShopController {
 		return "/shop/order-complete";
 	}
 	
-	
-
-	
-	
+	@PostMapping("/shop/order-complete")
+	public String ordercomplete(OrderVo vo) {		
+		return "/shop/order-complete";
+	}
 }

@@ -55,8 +55,7 @@ public class ShopService {
 		return dao.insertOrderDetail(orderId, code);
 	}
 	
-	
-	public List<OrderVo> selectOrder(String uid){
-		return dao.selectOrder(uid);
+	public List<OrderVo> selectOrder(String uid, int orderId){
+		return dao.selectOrder(uid, orderId);
 	}
 }
